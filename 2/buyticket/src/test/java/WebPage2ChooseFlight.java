@@ -19,8 +19,7 @@ public class WebPage2ChooseFlight extends WebPage{
 
     WebPage2ChooseFlight(WebDriver wdriver)
     {
-        driver = wdriver;
-        PageIsVisible=true;
+        super(wdriver);
         wTable = new WebTable(driver);
 
         new WebDriverWait(driver, 10).until(

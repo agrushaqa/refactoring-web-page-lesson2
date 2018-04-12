@@ -9,11 +9,11 @@ public class WebPage {
     WebElement submitButton;
     String ButtonSelector = "input[type=submit]";
 
-//    WebPage(WebDriver wdriver)
-//    {
-//        driver = wdriver;
-//        PageIsVisible=true;
-//    }
+    WebPage(WebDriver wdriver)
+    {
+        driver = wdriver;
+        PageIsVisible=true;
+    }
 
     protected WebElement getButton()
     {

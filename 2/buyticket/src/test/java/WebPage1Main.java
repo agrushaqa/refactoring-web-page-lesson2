@@ -20,11 +20,10 @@ public class WebPage1Main extends WebPage{
     String fromWebElementSelector = "select[name=fromPort]";
     String toWebElementSelector = "select[name=toPort]";
 
-    WebPage1Main(WebDriver wdriver)
+    WebPage1Main(WebDriver wdriver, String WebPage)
     {
-        driver = wdriver;
-        PageIsVisible=true;
-        driver.get("http://blazedemo.com/");
+        super(wdriver);
+        driver.get(WebPage);
 
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.and(

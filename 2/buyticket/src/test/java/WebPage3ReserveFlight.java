@@ -40,16 +40,18 @@ public class WebPage3ReserveFlight  extends WebPage{
 
     int SearchResultIsFalse = -1;
 
-            WebPage3ReserveFlight(String name,
-                          String address,
-                          String city,
-                          String state,
-                          String zipcode,
-                          String cardnumber,
-                          String cardmonth,
-                          String cardyear,
-                          String cardholder,
-                          boolean remember){
+            WebPage3ReserveFlight(WebDriver wdriver,
+                                  String name,
+                                  String address,
+                                  String city,
+                                  String state,
+                                  String zipcode,
+                                  String cardnumber,
+                                  String cardmonth,
+                                  String cardyear,
+                                  String cardholder,
+                                  boolean remember){
+                super(wdriver);
                 PassengerName = name;
                 PassengerAddress = address;
                 PassengerCity = city;
@@ -60,21 +62,16 @@ public class WebPage3ReserveFlight  extends WebPage{
                 PassengerCardExpireYear = cardyear;
                 PassengerCardHolder = cardholder;
                 RememberPersonalData = remember;
-    }
 
-    public void start(WebDriver wdriver) {
-        driver = wdriver;
-        PageIsVisible = true;
+                new WebDriverWait(driver, 10).until(
+                        ExpectedConditions.and(
+                                ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(SelectorInputName)),
+                                ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(SelectorCardHolder))
+                        )
+                );
 
-        new WebDriverWait(driver, 10).until(
-                ExpectedConditions.and(
-                        ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(SelectorInputName)),
-                        ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(SelectorCardHolder))
-                )
-        );
-
-        getFlightData();
-        ConvertFlightDataToDictionary();
+                getFlightData();
+                ConvertFlightDataToDictionary();
     }
 
     private void getFlightData()

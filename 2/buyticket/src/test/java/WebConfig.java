@@ -44,7 +44,7 @@ public class WebConfig {
 
     @Test
     public void test() {
-        WebPage1Main page1 = new WebPage1Main(driver);
+        WebPage1Main page1 = new WebPage1Main(driver, "http://blazedemo.com/");
         List<String> fromCityList = page1.getFromList();
         List<String> toCityList = page1.getToList();
 
@@ -70,7 +70,8 @@ public class WebConfig {
         waitLoadingWebPage();
         System.out.print("\n*********************\n");
 
-        WebPage3ReserveFlight page3 = new WebPage3ReserveFlight("Artem",
+        WebPage3ReserveFlight page3 = new WebPage3ReserveFlight(driver,
+                "Artem",
                 "Kremlin",
                 "Moscow",
                 "Moscow state",
@@ -80,7 +81,6 @@ public class WebConfig {
                 "2020",
                 "Artem Ivanov",
                 false );
-        page3.start(driver);
         page3.PrintFlightData();
         page3.FillPassengerData();
         waitLoadingWebPage();

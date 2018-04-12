@@ -19,11 +19,12 @@ public class WebPage4Result extends WebPage {
     String KeyCard = "Card Number";
     String KeyCardExpireDate = "Expiration";
     String KeyDate = "Date";
+    int IdColumnWithParameters = 0;
+    int IdColumnWithValues = 1;
 
     WebPage4Result(WebDriver wdriver)
     {
-        driver = wdriver;
-        PageIsVisible=true;
+        super(wdriver);
 
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.and(
@@ -37,8 +38,8 @@ public class WebPage4Result extends WebPage {
 
         for(int iRow=0; iRow < wTable.getRowCount();++iRow)
         {
-            String currentResultParameter = wTable.getElementOfTable(iRow,0).getText();
-            String currentResultValue = wTable.getElementOfTable(iRow,1).getText();
+            String currentResultParameter = wTable.getElementOfTable(iRow,IdColumnWithParameters).getText();
+            String currentResultValue = wTable.getElementOfTable(iRow,IdColumnWithValues).getText();
             ResultDictionary.put(currentResultParameter, currentResultValue);
         }
 
