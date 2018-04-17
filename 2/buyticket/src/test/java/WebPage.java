@@ -1,24 +1,26 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.util.concurrent.TimeUnit;
 
 public class WebPage {
     WebDriver driver;
     boolean PageIsVisible=false;
     WebElement submitButton;
-    String ButtonSelector = "input[type=submit]";
+    By.ByCssSelector ButtonSelector  = new By.ByCssSelector("input[type=submit]");
 
-    WebPage(WebDriver wdriver)
+    WebPage()
     {
-        driver = wdriver;
+        driver = WebSource.getInstance().gerDriver();
         PageIsVisible=true;
     }
 
     protected WebElement getButton()
     {
-        return driver.findElement(By.cssSelector(ButtonSelector));
+        return driver.findElement(ButtonSelector);
     }
+
 
 
     public WebDriver nextPage()

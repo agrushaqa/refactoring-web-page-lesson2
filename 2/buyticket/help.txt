@@ -1,0 +1,8 @@
+запуск отдельного класса
+mvn -Dtest=WebConfig test
+
+запуск chrome
+mvn -Dtest=WebConfig -Dbrowser=chrome test
+
+запуск firefox
+mvn -Dtest=WebConfig -Dbrowser=firefox test

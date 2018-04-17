@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -9,21 +8,21 @@ import java.util.List;
 
 
 public class WebPage2ChooseFlight extends WebPage{
-    String ButtonSelector = "input[type=submit]";
-    String HeaderSelector = ".//table/tbody/tr[1]/td";
+    By.ByCssSelector ButtonSelector = new By.ByCssSelector("input[type=submit]");
+    By.ByXPath  HeaderSelector = new By.ByXPath(".//table/tbody/tr[1]/td");
     String PriceTitle = "Price";
     String FlightTitle = "Flight #";
     String AirlineTitle = "Airline";
     int SelectedFlights = 0;
     WebTable wTable;
 
-    WebPage2ChooseFlight(WebDriver wdriver)
+    WebPage2ChooseFlight()
     {
-        super(wdriver);
+        super();
         wTable = new WebTable(driver);
 
         new WebDriverWait(driver, 10).until(
-                ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(HeaderSelector)));
+                ExpectedConditions.visibilityOfAllElementsLocatedBy(HeaderSelector));
     }
 
     public List<Float> getAllPrices()
@@ -64,6 +63,6 @@ public class WebPage2ChooseFlight extends WebPage{
 
     protected WebElement getButton()
     {
-        return driver.findElements(By.cssSelector(ButtonSelector)).get(SelectedFlights);
+        return driver.findElements(ButtonSelector).get(SelectedFlights);
     }
 }

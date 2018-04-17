@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -8,9 +7,9 @@ import java.util.Map;
 
 public class WebPage4Result extends WebPage {
 
-    String SelectorPre = ".//pre";
-    String SelectorTableBody = ".//table/tbody";
-    String SelectorH1 = ".//h1";
+    By.ByXPath SelectorPre = new By.ByXPath(".//pre");
+    By.ByXPath  SelectorTableBody = new By.ByXPath(".//table/tbody");
+    By.ByXPath  SelectorH1 = new By.ByXPath(".//h1");
     WebTable wTable;
     Map<String,String> ResultDictionary = new HashMap<String,String>();
     String KeyId = "Id";
@@ -22,15 +21,15 @@ public class WebPage4Result extends WebPage {
     int IdColumnWithParameters = 0;
     int IdColumnWithValues = 1;
 
-    WebPage4Result(WebDriver wdriver)
+    WebPage4Result()
     {
-        super(wdriver);
+        super();
 
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.and(
-                        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(SelectorPre)),
-                        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(SelectorTableBody)),
-                        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(SelectorH1))
+                        ExpectedConditions.visibilityOfAllElementsLocatedBy(SelectorPre),
+                        ExpectedConditions.visibilityOfAllElementsLocatedBy(SelectorTableBody),
+                        ExpectedConditions.visibilityOfAllElementsLocatedBy(SelectorH1)
                 )
         );
 

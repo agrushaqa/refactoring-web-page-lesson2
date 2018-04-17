@@ -1,5 +1,4 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,7 +18,6 @@ public class WebPage3ReserveFlight  extends WebPage{
     String PassengerCardExpireYear;
     String PassengerCardHolder;
     boolean RememberPersonalData = false;
-    String H2Selector = ".//h2/following::p";
     List<WebElement> FlightData;
     Map<String,String> FlightDataDictionary = new HashMap<String,String>();
     String KeyAirline = "Airline";
@@ -27,21 +25,22 @@ public class WebPage3ReserveFlight  extends WebPage{
     String KeyPrice = "Price";
     String KeyTax = "Arbitrary Fees and Taxes";
     String KeyTotalCost = "Total Cost";
-    String SelectorInputName = "input#inputName";
-    String SelectorInputAdress = "input#address";
-    String SelectorInputCity = "input#city";
-    String SelectorInputState = "input#state";
-    String SelectorZipCode = "input#zipCode";
-    String SelectorCardNumber = "input#creditCardNumber";
-    String SelectorCardExpireMonth = "input#creditCardMonth";
-    String SelectorCardExpireYear = "input#creditCardYear";
-    String SelectorCardHolder = "input#nameOnCard";
-    String SelectorRememberCheckbox = "input#rememberMe";
+    By.ByXPath H2Selector = new By.ByXPath(".//h2/following::p");
+    By.ByXPath  HeaderSelector = new By.ByXPath(".//table/tbody/tr[1]/td");
+    By.ByCssSelector SelectorInputName = new By.ByCssSelector("input#inputName");
+    By.ByCssSelector SelectorInputAdress = new By.ByCssSelector("input#address");
+    By.ByCssSelector SelectorInputCity = new By.ByCssSelector("input#city");
+    By.ByCssSelector SelectorInputState = new By.ByCssSelector("input#state");
+    By.ByCssSelector SelectorZipCode = new By.ByCssSelector("input#zipCode");
+    By.ByCssSelector SelectorCardNumber = new By.ByCssSelector("input#creditCardNumber");
+    By.ByCssSelector SelectorCardExpireMonth = new By.ByCssSelector("input#creditCardMonth");
+    By.ByCssSelector SelectorCardExpireYear = new By.ByCssSelector("input#creditCardYear");
+    By.ByCssSelector SelectorCardHolder = new By.ByCssSelector("input#nameOnCard");
+    By.ByCssSelector SelectorRememberCheckbox = new By.ByCssSelector("input#rememberMe");
 
     int SearchResultIsFalse = -1;
 
-            WebPage3ReserveFlight(WebDriver wdriver,
-                                  String name,
+            WebPage3ReserveFlight(String name,
                                   String address,
                                   String city,
                                   String state,
@@ -51,7 +50,7 @@ public class WebPage3ReserveFlight  extends WebPage{
                                   String cardyear,
                                   String cardholder,
                                   boolean remember){
-                super(wdriver);
+                super();
                 PassengerName = name;
                 PassengerAddress = address;
                 PassengerCity = city;
@@ -65,8 +64,8 @@ public class WebPage3ReserveFlight  extends WebPage{
 
                 new WebDriverWait(driver, 10).until(
                         ExpectedConditions.and(
-                                ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(SelectorInputName)),
-                                ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector(SelectorCardHolder))
+                                ExpectedConditions.presenceOfAllElementsLocatedBy(SelectorInputName),
+                                ExpectedConditions.presenceOfAllElementsLocatedBy(SelectorCardHolder)
                         )
                 );
 
@@ -76,7 +75,7 @@ public class WebPage3ReserveFlight  extends WebPage{
 
     private void getFlightData()
     {
-        FlightData = driver.findElements(By.xpath(H2Selector));
+        FlightData = driver.findElements(H2Selector);
     }
 
     private void ConvertFlightDataToDictionary()
@@ -147,60 +146,60 @@ public class WebPage3ReserveFlight  extends WebPage{
     }
     private void setName()
     {
-        WebElement Name = driver.findElement(By.cssSelector(SelectorInputName));
+        WebElement Name = driver.findElement(SelectorInputName);
         Name.sendKeys(PassengerName);
     }
 
     private void setAddress()
     {
-        WebElement Address = driver.findElement(By.cssSelector(SelectorInputAdress));
+        WebElement Address = driver.findElement(SelectorInputAdress);
         Address.sendKeys(PassengerAddress);
     }
 
     private void setCity()
     {
-        WebElement City = driver.findElement(By.cssSelector(SelectorInputCity));
+        WebElement City = driver.findElement(SelectorInputCity);
         City.sendKeys(PassengerCity);
     }
 
     private void setState()
     {
-        WebElement State = driver.findElement(By.cssSelector(SelectorInputState));
+        WebElement State = driver.findElement(SelectorInputState);
         State.sendKeys(PassengerState);
     }
 
     private void setZipCode()
     {
-        WebElement ZipCode = driver.findElement(By.cssSelector(SelectorZipCode));
+        WebElement ZipCode = driver.findElement(SelectorZipCode);
         ZipCode.sendKeys(PassengerZipCode);
     }
 
     private void setCardNumber()
     {
-        WebElement CardNumber = driver.findElement(By.cssSelector(SelectorCardNumber));
+        WebElement CardNumber = driver.findElement(SelectorCardNumber);
         CardNumber.sendKeys(PassengerCardNumber);
     }
 
     private void setCardExpireMonth()
     {
-        WebElement CardExpireMonth = driver.findElement(By.cssSelector(SelectorCardExpireMonth));
+        WebElement CardExpireMonth = driver.findElement(SelectorCardExpireMonth);
         CardExpireMonth.sendKeys(PassengerCardNumber);
     }
 
     private void setCardExpireYear()
     {
-        WebElement CardExpireYear = driver.findElement(By.cssSelector(SelectorCardExpireYear));
+        WebElement CardExpireYear = driver.findElement(SelectorCardExpireYear);
         CardExpireYear.sendKeys(PassengerCardNumber);
     }
 
     private void setCardHolder()
     {
-        WebElement CardHolder = driver.findElement(By.cssSelector(SelectorCardHolder));
+        WebElement CardHolder = driver.findElement(SelectorCardHolder);
         CardHolder.sendKeys(PassengerCardHolder);
     }
 
     private void setRemember()
     {
-        driver.findElement(By.cssSelector(SelectorRememberCheckbox)).click();
+        driver.findElement(SelectorRememberCheckbox).click();
     }
 }

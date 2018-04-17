@@ -1,5 +1,5 @@
+import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -10,32 +10,36 @@ import java.util.List;
 
 
 public class WebPage1Main extends WebPage{
-    List<String> FromList;
-    List<String> ToList;
     WebElement fromWebElement;
     WebElement toWebElement;
     List<WebElement> fromWebElementList;
     List<WebElement> toWebElementList;
-    WebElement submitButton;
-    String fromWebElementSelector = "select[name=fromPort]";
-    String toWebElementSelector = "select[name=toPort]";
+    By.ByCssSelector fromWebElementSelector = new By.ByCssSelector("select[name=fromPort]");
+    By.ByCssSelector toWebElementSelector  = new By.ByCssSelector("select[name=toPort]");
+    By.ByCssSelector fromWebElementListSelector = new By.ByCssSelector("select[name=fromPort] option");
+    By.ByCssSelector toWebElementListSelector = new By.ByCssSelector("select[name=toPort] option");
 
-    WebPage1Main(WebDriver wdriver, String WebPage)
+    WebPage1Main(String WebPage)
     {
-        super(wdriver);
-        driver.get(WebPage);
+        super();
+        try{driver.get(WebPage);
+        }catch (Exception e){
+            Assert.fail("Can not open "+WebPage);
+        }
+
+
 
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.and(
-                        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(fromWebElementSelector)),
-                        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(toWebElementSelector)),
-                        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector(ButtonSelector))
+                        ExpectedConditions.visibilityOfAllElementsLocatedBy(fromWebElementSelector),
+                        ExpectedConditions.visibilityOfAllElementsLocatedBy(toWebElementSelector),
+                        ExpectedConditions.visibilityOfAllElementsLocatedBy(ButtonSelector)
                 )
         );
-        fromWebElement = wdriver.findElement(By.cssSelector(fromWebElementSelector));
-        toWebElement = wdriver.findElement(By.cssSelector(toWebElementSelector));
-        fromWebElementList = wdriver.findElements(By.cssSelector("select[name=fromPort] option"));
-        toWebElementList = wdriver.findElements(By.cssSelector("select[name=toPort] option"));
+        fromWebElement = driver.findElement(fromWebElementSelector);
+        toWebElement = driver.findElement(toWebElementSelector);
+        fromWebElementList = driver.findElements(fromWebElementListSelector);
+        toWebElementList = driver.findElements(toWebElementListSelector);
     }
 
     List<String> getFromList()

@@ -8,10 +8,10 @@ import java.util.List;
 
 public class WebTable {
     WebDriver driver;
-    String RowSelector = ".//table/tbody/tr";
-    String ColumnSelector = ".//table/tbody/tr/td";
-    String HeaderSelector = ".//table/thead/tr/th";
-    String FirstRowSelector = ".//table/tbody/tr[1]/td";
+    By.ByXPath RowSelector = new By.ByXPath(".//table/tbody/tr");
+    By.ByXPath ColumnSelector = new By.ByXPath(".//table/tbody/tr/td");
+    By.ByXPath HeaderSelector = new By.ByXPath(".//table/thead/tr/th");
+    By.ByXPath FirstRowSelector = new By.ByXPath(".//table/tbody/tr[1]/td");
     int RowCount = 0;
     int ColumnCount =0;
     List<WebElement> TableElements;
@@ -21,7 +21,7 @@ public class WebTable {
         driver = wdriver;
 
         new WebDriverWait(driver, 10).until(
-                        ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(ColumnSelector)));
+                        ExpectedConditions.visibilityOfAllElementsLocatedBy(ColumnSelector));
 
         RowCount = getRowCountInTable();
         ColumnCount = getColumnCountInTable();
@@ -60,24 +60,24 @@ public class WebTable {
 
     public List<WebElement> getHeaderOfTableElements()
     {
-        return driver.findElements(By.xpath(HeaderSelector));
+        return driver.findElements(HeaderSelector);
     }
 
     public int getRowCountInTable()
     {
-        List<WebElement> Row = driver.findElements(By.xpath(RowSelector));
+        List<WebElement> Row = driver.findElements(RowSelector);
         return Row.size();
     }
 
     public int getColumnCountInTable()
     {
-        List<WebElement> Column = driver.findElements(By.xpath(FirstRowSelector));
+        List<WebElement> Column = driver.findElements(FirstRowSelector);
         return Column.size();
     }
 
     public List<WebElement> getTableWebElements()
     {
-        return driver.findElements(By.xpath(ColumnSelector));
+        return driver.findElements(ColumnSelector);
     }
 
     public void PrintAllTextOfTableWithIndex()
