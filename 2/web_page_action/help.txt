@@ -1,0 +1,12 @@
+Сайт: automationpractice.com
+Описать новый Page Object на страницу
+Навести указатель мыши на кнопку WOMEN
+- Проверить, что размер кнопки не поменялся
+- Проверить, что цвет кнопки в наведенном состоянии - rgba(51, 51, 51, 1)
+
+Для запуска
+mvn -Dtest=CheckColorOnLoginPageTest -Dbrowser=chrome test
+
+или в файле CheckColorOnLoginPageTest правой кнопкой мыши на test
+и выбираем run
+
