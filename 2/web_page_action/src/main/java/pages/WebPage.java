@@ -37,9 +37,4 @@ public class WebPage {
         Color colors = robot.getPixelColor(x, y);
         return colors.toString();
     }
-
-    public void close(){
-        driver.quit();
-        log.info("Test finished");
-    }
 }

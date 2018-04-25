@@ -57,6 +57,10 @@ public class Button {
         return button.getCssValue("background-color");
     }
 
+    public Dimension size(){
+        return button_size;
+    }
+
     public int getWidth(){
        return button_size.getWidth();
     }

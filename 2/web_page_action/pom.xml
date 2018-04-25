@@ -33,9 +33,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.21.0</version>
                 <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/main/resources/smoke.xml</suiteXmlFile>
-                    </suiteXmlFiles>
                     <systemPropertyVariables>
                         <configpath>src/main/resources/config.json</configpath>
                         <browser>${browser}</browser>
@@ -44,15 +41,6 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>chrome</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
