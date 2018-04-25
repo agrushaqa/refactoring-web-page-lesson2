@@ -12,7 +12,7 @@ public class WebPage {
     private static Robot robot;
     private static Logger log = Logger.getLogger(WebPage.class.getName());
 
-    WebPage()
+    public WebPage()
     {
         try {
             driver = WebSource.getInstance().getDriver();
@@ -36,5 +36,9 @@ public class WebPage {
         robot.mouseMove(x, y);
         Color colors = robot.getPixelColor(x, y);
         return colors.toString();
+    }
+
+    public void closeAllPages(){
+        WebSource.getInstance().getDriver().quit();
     }
 }

@@ -24,7 +24,7 @@ public class BaseTest {
 
     @After
     public void closepage(){
-        WebSource.getInstance().getDriver().quit();
+        new WebPage().closeAllPages();
         log.info("Test finished");
     }
 }
