@@ -1,0 +1,32 @@
+Добавить запуск теста через Internet Explorer/Edge/Safari
+Создать автоматический тест по следующему сценарию:
+1. Открыть сайт http://automationpractice.com/index.php
+2. Навести указатель мыши на Women
+3. Дождаться появление меню c помощью ExpectedConditions
+4. Выбрать в меню T-Shirts
+5. Проверить, что результаты появились на странице
+
+Задание нужно сделать на любом из четырех браузеров на выбор:
+InternetExplorer,
+Edge,
+Opera,
+Safari
+
+* Дополнительное задание:
+Сделать параметр запуска headless, по которому Google Chrome запускается в headless режиме
+Рекомендации:
+Применить паттерн PageObject, вынести Menu в отдельный компонент
+
+Для запуска
+mvn -Dtest=AutomationpracticeExpectedTest -Dbrowser=chrome test
+mvn -Dtest=AutomationpracticeExpectedTest -Dbrowser=firefox test
+mvn -Dtest=AutomationpracticeExpectedTest -Dbrowser=opera test
+mvn -Dtest=AutomationpracticeExpectedTest -Dbrowser=ie test //TODO
+mvn -Dtest=AutomationpracticeExpectedTest -Dbrowser=edge test //TODO
+mvn -Dtest=AutomationpracticeExpectedTest -Dbrowser=headless test
+
+или в файле CheckColorOnLoginPageTest правой кнопкой мыши на test
+и выбираем run
+
+Настройки запуска смотри в файле
+src\main\resources\config.json
