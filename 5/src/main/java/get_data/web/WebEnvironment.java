@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import get_data.json.JsonReader;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -89,10 +90,12 @@ public class WebEnvironment {
 
     private void createIEDriver(){
         Configuration.browserBinary = SourceData.get("IE");
-        //DesiredCapabilities capabilities = new DesiredCapabilities();
-        //capabilities.setCapability("ignoreProtectedModeSettings", false);
+        System.setProperty("webdriver.ie.driver", SourceData.get("IEDriver"));
+        log.info("IE path:"+Configuration.browserBinary);
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("ignoreProtectedModeSettings", false);
         //capabilities.setCapability("INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS", false);
-        //setWebDriver(new InternetExplorerDriver(capabilities));
+        setWebDriver(new InternetExplorerDriver(capabilities));
     }
 
     private void createChromeHeadlessDriver(){
@@ -103,6 +106,7 @@ public class WebEnvironment {
     public void close(){
         switch (BrowserName) {
             case "opera":
+            case "ie":
                 getWebDriver().quit();
         }
     }

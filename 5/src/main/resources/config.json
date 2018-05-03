@@ -2,6 +2,7 @@
   "WebPage":"http://automationpractice.com",
   "Opera":"C:\\Program Files\\Opera\\52.0.2871.99\\opera.exe",
   "IE":"C:\\Program Files\\Internet Explorer\\iexplore.exe",
+  "IEDriver":"E:\\gru_java\\prog\\IEDriverServer.exe",
   "Edge":"E:\\gru_java\\prog\\MicrosoftWebDriver.exe",
   "BrowserstackUserName":"xxx",
   "BrowserstackPass":"xxx"
