@@ -48,7 +48,7 @@ public class StartPage extends BasePage {
             button.hover();
             //moveMouseTo(button.getLocation().getX(), button.getLocation().getY());
             new WebDriverWait(getWebDriver(), 15).until(
-                    ExpectedConditions.visibilityOfAllElementsLocatedBy(SELECTED_BUTTON)); // TODO delete waiting. waiting performed in isSelectedWomenButton. Need only for dz
+                    ExpectedConditions.visibilityOfAllElementsLocatedBy(SELECTED_BUTTON)); // It is necessary for Firefox
 
         }
     }

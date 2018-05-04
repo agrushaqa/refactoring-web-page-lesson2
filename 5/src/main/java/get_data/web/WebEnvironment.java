@@ -23,46 +23,57 @@ public class WebEnvironment {
     private String BrowserName;
     protected static Logger log = Logger.getLogger(WebEnvironment.class.getName());
 
-    public WebEnvironment(){
+    public WebEnvironment() {
         try {
             SourceData = new JsonReader(System.getProperty("configpath"));
-        }catch (Exception e){
+        } catch (Exception e) {
             Assert.fail("Can not read config file.");
         }
         try {
             BrowserName = System.getProperty("browser");
             if (BrowserName.isEmpty())
                 BrowserName = "chrome";
-        }catch (Exception e){
+        } catch (Exception e) {
             BrowserName = "chrome";
         }
     }
 
-    public void setDriver(){
-        switch (BrowserName){
-            case "chrome": Configuration.browser = BrowserName; break;
-            case "firefox": Configuration.browser = BrowserName; break;
-            case "opera": createOperaDriver(); break;
-            case "edge": createEdgeDriver(); break;
-            case "ie": createIEDriver(); break;
-            case "headless": createChromeHeadlessDriver(); break;
-            default: Configuration.browser = "chrome";
+    public void setDriver() {
+        switch (BrowserName) {
+            case "chrome":
+            case "firefox":
+                Configuration.browser = BrowserName;
+                break;
+            case "opera":
+                createOperaDriver();
+                break;
+            case "edge":
+                createEdgeDriver();
+                break;
+            case "ie":
+                createIEDriver();
+                break;
+            case "headless":
+                createChromeHeadlessDriver();
+                break;
+            default:
+                Configuration.browser = "chrome";
         }
     }
 
-    public void openWebPage(){
-        open((SourceData.get("WebPage")));
+    public void openWebPage() {
+        open(SourceData.get("WebPage"));
     }
 
-    private void createOperaDriver(){
-        String OperaDriverPath = "lib/opera/operadriver.exe";
+    private void createOperaDriver() {
+        String OperaDriverPath = SourceData.get("OperaDriver");
         System.setProperty("webdriver.opera.driver", OperaDriverPath);
         OperaOptions options = new OperaOptions();
         options.setBinary(SourceData.get("Opera"));
         setWebDriver(new OperaDriver(options));
     }
 
-    private void createEdgeDriver(){
+    private void createEdgeDriver() {
         //Configuration.browser = "edge";
         System.setProperty("webdriver.edge.driver", SourceData.get("Edge"));
         String USERNAME = SourceData.get("BrowserstackUserName");
@@ -81,29 +92,29 @@ public class WebEnvironment {
 
             WebDriver driver = new RemoteWebDriver(browserStackUrl, caps);
             driver.get("http://www.google.com");
-        }catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             Assert.fail("browserStackUrl is invalid");
-        }catch (Exception e){
+        } catch (Exception e) {
             Assert.fail("fail to driver initialize");
         }
     }
 
-    private void createIEDriver(){
+    private void createIEDriver() {
         Configuration.browserBinary = SourceData.get("IE");
         System.setProperty("webdriver.ie.driver", SourceData.get("IEDriver"));
-        log.info("IE path:"+Configuration.browserBinary);
+        log.info("IE path:" + Configuration.browserBinary);
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("ignoreProtectedModeSettings", false);
         //capabilities.setCapability("INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS", false);
         setWebDriver(new InternetExplorerDriver(capabilities));
     }
 
-    private void createChromeHeadlessDriver(){
+    private void createChromeHeadlessDriver() {
         Configuration.browser = "chrome";
         Configuration.headless = true;
     }
 
-    public void close(){
+    public void close() {
         switch (BrowserName) {
             case "opera":
             case "ie":

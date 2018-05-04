@@ -1,9 +1,10 @@
 {
   "WebPage":"http://automationpractice.com",
   "Opera":"C:\\Program Files\\Opera\\52.0.2871.99\\opera.exe",
+  "OperaDriver":"lib/opera/operadriver.exe",
   "IE":"C:\\Program Files\\Internet Explorer\\iexplore.exe",
-  "IEDriver":"E:\\gru_java\\prog\\IEDriverServer.exe",
-  "Edge":"E:\\gru_java\\prog\\MicrosoftWebDriver.exe",
+  "IEDriver":"lib/ie/IEDriverServer.exe",
+  "Edge":"lib/edge/MicrosoftWebDriver.exe",
   "BrowserstackUserName":"xxx",
   "BrowserstackPass":"xxx"
 }
