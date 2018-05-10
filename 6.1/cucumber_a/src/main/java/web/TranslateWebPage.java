@@ -34,9 +34,9 @@ public class TranslateWebPage {
 /*            $(EDIT_FIELD_WORD_FOR_TRANSLATE).shouldBe(Condition.visible);
             $(EDIT_FIELD_WORD_FOR_TRANSLATE).val(word).pressEnter();*/
 
-            new WebDriverWait(driver, 10).until(
+            new WebDriverWait(driver, 90).until(
                     ExpectedConditions.and(
-                            ExpectedConditions.visibilityOfAllElementsLocatedBy(EDIT_FIELD_WORD_FOR_TRANSLATE)
+                            ExpectedConditions.elementToBeClickable(EDIT_FIELD_WORD_FOR_TRANSLATE)
                     )
             );
 

@@ -46,7 +46,7 @@ public class WebEnvironment {
         log.info("driver was initialize here");
         driver = setDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(90, TimeUnit.SECONDS);
     }
 
     public WebDriver getDriver()
@@ -96,7 +96,7 @@ public class WebEnvironment {
             log.info("Hub url is "+SourceData.get("HubUrl"));
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--start-maximized");
-            options.addArguments("--headless");
+            //options.addArguments("--headless");
             options.setCapability(CapabilityType.ACCEPT_SSL_CERTS,true);
             driver = new RemoteWebDriver(new URL(SourceData.get("HubUrl")), options);
         }catch (MalformedURLException e){
@@ -132,7 +132,8 @@ public class WebEnvironment {
 
     public void closeWebPage()
     {
-        getInstance().getDriver().quit();
+        if(instance != null)
+            getInstance().getDriver().quit();
         instance = null;
     }
 }
