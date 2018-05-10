@@ -1,0 +1,36 @@
+Behavior Driven Development
+Домашнее задание:
+1. Установить Cucumber как новый проект,
+2. Написать два любых сценария (features) в новом проекте и реализовать их,
+3. Запустить Selenium Grid на локальной машине с 1 node,
+4. Запустить сценарии с использованием mvn test -Dbrowser=remotewebdriver.
+
+Дополнительное задание:
+*Внедрить Cucumber в созданный ранее проект и реализовать feature для определения результатов поиска T-shirts предыдущего домашнего задания.
+
+Подготовка:
+В файле 
+src/test/resources/config.json
+нужно указать URL hub (сервера)
+
+Запуск на сервере:
+java -jar selenium-server-standalone-3.11.0.jar -role hub
+
+на клиенте
+java -jar selenium-server-standalone-3.11.0.jar -role node -hub http://192.168.0.100:4444/grid/register/
+или
+java -jar selenium-server-standalone-3.11.0.jar -role node -hub http://192.168.0.100:4444/grid/register/ -port 20006 -browser browserName=chrome,maxInstances=2
+
+Запуск тестов
+1. remote web driver
+mvn -Dbrowser=remote test 
+2.
+chrome (обычный режим)
+mvn -Dbrowser=chrome test 
+
+3. Chrome в скрытом режиме
+mvn -Dbrowser=headless test
+
+Консоль:
+localhost:4444/grid/console
+

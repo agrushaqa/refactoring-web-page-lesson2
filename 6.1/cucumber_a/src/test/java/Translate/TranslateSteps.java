@@ -1,31 +1,36 @@
 package Translate;
 
-import base.BaseTest;
 import cucumber.api.java.After;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import web.TranslateWebPage;
-import web.WebEnvironment;
+import web.*;
 
 import java.util.logging.Logger;
 
 public class TranslateSteps extends BaseTest {
     private static Logger log = Logger.getLogger(TranslateSteps.class.getName());
-    private TranslateWebPage page = new TranslateWebPage();
+    private TranslateWebPage page;
 
     @After
     public void after_calling_scenario(){
         log.info("after_after");
+        page.close();
+      /*  try {
+            Thread.sleep(5000);
+        }catch (Exception e){
+            log.info("Timeout exception!");
+        }*/
     }
 
     @Given("^word for translate$")
     public void word_for_translate(){
         log.info("Start cucumber test");
-        browser = new WebEnvironment();
-        browser.setDriver();
-        browser.openWebPage();
+        //browser = new WebEnvironment();
+        //browser.setDriver();
+        //browser.openWebPage();
+        page = new TranslateWebPage();
+        page.open();
     }
 
     @When("^I search translate for \"(.*)\"")
