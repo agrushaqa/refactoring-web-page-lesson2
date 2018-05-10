@@ -3,15 +3,18 @@ package web;
 import get_data.JsonReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 import static io.github.bonigarcia.wdm.DriverManagerType.CHROME;
 import static io.github.bonigarcia.wdm.DriverManagerType.FIREFOX;
@@ -42,6 +45,8 @@ public class WebEnvironment {
         }
         log.info("driver was initialize here");
         driver = setDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     public WebDriver getDriver()
@@ -85,11 +90,15 @@ public class WebEnvironment {
         return driver;
     }
 
-    public org.openqa.selenium.WebDriver createRemoteChromeDriver(){
+    public org.openqa.selenium.WebDriver createRemoteChromeDriver() {
         try {
             log.info("--- Usage remove web driver ---");
             log.info("Hub url is "+SourceData.get("HubUrl"));
-            driver = new RemoteWebDriver(new URL(SourceData.get("HubUrl")), DesiredCapabilities.chrome());
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--start-maximized");
+            options.addArguments("--headless");
+            options.setCapability(CapabilityType.ACCEPT_SSL_CERTS,true);
+            driver = new RemoteWebDriver(new URL(SourceData.get("HubUrl")), options);
         }catch (MalformedURLException e){
             e.printStackTrace();
         }

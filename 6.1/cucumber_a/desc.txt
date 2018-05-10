@@ -1,36 +1,60 @@
 Behavior Driven Development
-Домашнее задание:
-1. Установить Cucumber как новый проект,
-2. Написать два любых сценария (features) в новом проекте и реализовать их,
-3. Запустить Selenium Grid на локальной машине с 1 node,
-4. Запустить сценарии с использованием mvn test -Dbrowser=remotewebdriver.
+Р”РѕРјР°С€РЅРµРµ Р·Р°РґР°РЅРёРµ:
+1. РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Cucumber РєР°Рє РЅРѕРІС‹Р№ РїСЂРѕРµРєС‚,
+2. РќР°РїРёСЃР°С‚СЊ РґРІР° Р»СЋР±С‹С… СЃС†РµРЅР°СЂРёСЏ (features) РІ РЅРѕРІРѕРј РїСЂРѕРµРєС‚Рµ Рё СЂРµР°Р»РёР·РѕРІР°С‚СЊ РёС…,
+3. Р—Р°РїСѓСЃС‚РёС‚СЊ Selenium Grid РЅР° Р»РѕРєР°Р»СЊРЅРѕР№ РјР°С€РёРЅРµ СЃ 1 node,
+4. Р—Р°РїСѓСЃС‚РёС‚СЊ СЃС†РµРЅР°СЂРёРё СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј mvn test -Dbrowser=remotewebdriver.
 
-Дополнительное задание:
-*Внедрить Cucumber в созданный ранее проект и реализовать feature для определения результатов поиска T-shirts предыдущего домашнего задания.
+Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕРµ Р·Р°РґР°РЅРёРµ:
+*Р’РЅРµРґСЂРёС‚СЊ Cucumber РІ СЃРѕР·РґР°РЅРЅС‹Р№ СЂР°РЅРµРµ РїСЂРѕРµРєС‚ Рё СЂРµР°Р»РёР·РѕРІР°С‚СЊ feature РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РїРѕРёСЃРєР° T-shirts РїСЂРµРґС‹РґСѓС‰РµРіРѕ РґРѕРјР°С€РЅРµРіРѕ Р·Р°РґР°РЅРёСЏ.
 
-Подготовка:
-В файле 
+РџРѕРґРіРѕС‚РѕРІРєР°:
+Р’ С„Р°Р№Р»Рµ 
 src/test/resources/config.json
-нужно указать URL hub (сервера)
+РЅСѓР¶РЅРѕ СѓРєР°Р·Р°С‚СЊ URL hub (СЃРµСЂРІРµСЂР°)
+Firewall Р»СѓС‡С€Рµ РІС‹РєР»СЋС‡РёС‚СЊ
 
-Запуск на сервере:
+Р—Р°РїСѓСЃРє РЅР° СЃРµСЂРІРµСЂРµ:
 java -jar selenium-server-standalone-3.11.0.jar -role hub
 
-на клиенте
-java -jar selenium-server-standalone-3.11.0.jar -role node -hub http://192.168.0.100:4444/grid/register/
-или
-java -jar selenium-server-standalone-3.11.0.jar -role node -hub http://192.168.0.100:4444/grid/register/ -port 20006 -browser browserName=chrome,maxInstances=2
+РЅР° РєР»РёРµРЅС‚Рµ
+java -jar selenium-server-standalone-3.11.0.jar -role node -hub http://192.168.0.101:4444/grid/register/ -timeout 1000
+РёР»Рё
+java -jar selenium-server-standalone-3.11.0.jar -role node -hub http://192.168.0.101:4444/grid/register/ -port 20007 -timeout 15 -browserTimeout 20 -browser browserName=chrome,maxInstances=2
 
-Запуск тестов
+Р—Р°РїСѓСЃРє С‚РµСЃС‚РѕРІ
 1. remote web driver
-mvn -Dbrowser=remote test 
+mvn -Dbrowser=remote test
 2.
-chrome (обычный режим)
+chrome (РѕР±С‹С‡РЅС‹Р№ СЂРµР¶РёРј)
 mvn -Dbrowser=chrome test 
 
-3. Chrome в скрытом режиме
+3. Chrome РІ СЃРєСЂС‹С‚РѕРј СЂРµР¶РёРјРµ
 mvn -Dbrowser=headless test
 
-Консоль:
+РљРѕРЅСЃРѕР»СЊ:
 localhost:4444/grid/console
 
+
+Р—Р°РјРµС‡Р°РЅРёСЏ:
+1.
+https://github.com/SeleniumHQ/selenium-google-code-issue-archive/issues/4566
+About time parameters:
+
+* timeout - if after this time interval node does not responce to client command it
+supposed as hanged and removed from hub node pool. So another tests will not be executed
+on hanged node but on another node which capable with desired and requested capabilities.
+In seconds. If it is happened then in error message string TIMEOUT is shown.
+
+* browserTimeout - if after this interval browser does not return result of sent command
+it supposed that browser hangs and test session will be killed. If it is happenede
+in error message should be string as BROWSER_TIMEOUT. In seconds.
+
+* cleanUpCycle - interval between cleaning timeout test sessions. In milliseconds.
+So 5000 means that each 5 seconds special process checks is time of execution of command
+on node is more that timeout, and if it so then delete node from hub pool.
+
+* registerCycle - interval between register tries of node on hub. In milliseconds.
+So 5000 means that node process will perfom register request to hub every 5 seconds.
+It is useful for hub failure/crash or restarting. If hub is restarted after this 5
+seconds all nodes will be registered on hub and tests can continue to execute.
