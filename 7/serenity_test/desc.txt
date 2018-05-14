@@ -1,0 +1,12 @@
+@author:
+Артём Груша
+
+@date
+14.05.2018
+
+Запуск теста
+mvn test -Dbrowser=chrome -Dwebdriver.chrome.driver="E:\gru_java\prog\chromedriver.exe"
+
+Замечание:
+Описание запуска тестов
+http://www.thucydides.info/docs/thucydides/_running_thucydides_tests_from_the_command_line.html
