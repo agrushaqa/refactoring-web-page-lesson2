@@ -21,8 +21,14 @@ public class ResultPage extends PageObject {
         return panelSearchResult.isVisible();
     }
 
-    public void getAllResultLinks(){
+    public void outputAllResultLinks(){
         for(WebElementFacade iLink: linksArray)
             log.info(iLink.getAttribute("href"));
+    }
+
+    public int getCountResultLinks(){
+        log.info("Links count is :");
+        log.info(String.valueOf(linksArray.size()));
+        return linksArray.size();
     }
 }

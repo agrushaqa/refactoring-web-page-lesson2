@@ -1,6 +1,5 @@
 package ru.sputnik.test;
 
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -25,6 +24,7 @@ public class SearchSputnikScenarioSteps {
     @Then("User see list of result")
     public void userSeeListOfResult(){
         assertTrue(result_page.searchResult());
-        result_page.getAllResultLinks();
+        result_page.outputAllResultLinks();
+        assertTrue(result_page.getCountResultLinks() > 0);
     }
 }
