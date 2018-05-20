@@ -1,0 +1,20 @@
+Задание:
+Selenide
+Необходимо реализовать тест с использованием Selenide  
+Кейс:
+ 1. Открыть страницу artlebedev.ru, 
+2. Перейти на страницу Инвентарь,
+ 3. Выбрать Полезные штуки "Матрица идей", 
+4. Выполнить поиск любого запроса,
+
+ Проверить, что результаты поиска отображаются.  
+
+Дополнительные задания: 
+- Реализовать Test в виде цепочки, 
+- Использовать ElementsContainer для Меню сайта.
+
+Запуск:
+1. В файле ArtLebedevFindIdeaTest правой кнопкой мыши на test - выбираем run
+2.
+mvn -Dtest=ArtLebedevFindIdeaTest -Dbrowser=chrome test
+mvn -Dtest=ArtLebedevFindIdeaTest -Dbrowser=firefox test
