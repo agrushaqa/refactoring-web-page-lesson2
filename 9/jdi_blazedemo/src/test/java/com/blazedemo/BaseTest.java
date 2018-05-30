@@ -11,7 +11,6 @@ public class BaseTest extends TestNGBase {
 
     @BeforeSuite()
     public static void setUp(){
-        WebDriverManager.chromedriver().setup();
         WebSite.init(JDISiteBlazedemo.class);
         logger.info("start blazedemo test");
     }
