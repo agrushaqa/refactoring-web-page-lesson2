@@ -5,7 +5,6 @@ import com.epam.jdi.uitests.web.selenium.elements.complex.Selector;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import data.UserPath;
 import org.openqa.selenium.support.FindBy;
-import site.pages.WebPage2FlightSelectionPage;
 
 public class CityFromToForm extends Form<UserPath> {
     //public static Dropdown t;

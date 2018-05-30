@@ -15,6 +15,7 @@ public class JDITest extends BaseTest {
         setUpPath();
         selectFlight();
         purchaseFlight();
+        checkResults();
     }
 
     @Test
