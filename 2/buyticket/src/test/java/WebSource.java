@@ -13,10 +13,10 @@ public class WebSource {
 
     private WebSource()
     {
-        driver = getDriver();
+        driver = setDriver();
     }
 
-    public WebDriver gerDriver()
+    public WebDriver getDriver()
     {
         return driver;
     }
@@ -29,7 +29,7 @@ public class WebSource {
         return WebDriverHolderInstance.instance;
     }
 
-    private org.openqa.selenium.WebDriver getDriver(){
+    private org.openqa.selenium.WebDriver setDriver(){
         //return createFirefoxDriver();//createCromeDriver(); //createIEDriver();//
 
         String value =  System.getProperty("browser");

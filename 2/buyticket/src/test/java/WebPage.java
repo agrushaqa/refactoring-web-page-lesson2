@@ -12,7 +12,7 @@ public class WebPage {
 
     WebPage()
     {
-        driver = WebSource.getInstance().gerDriver();
+        driver = WebSource.getInstance().getDriver();
         PageIsVisible=true;
     }
 
