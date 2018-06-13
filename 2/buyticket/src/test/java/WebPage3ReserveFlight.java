@@ -96,10 +96,10 @@ public class WebPage3ReserveFlight  extends WebPage{
     {
         for(String iFlightData: FlightDataDictionary.keySet())
         {
-            System.out.print(iFlightData);
-            System.out.print("\n");
-            System.out.print(FlightDataDictionary.get(iFlightData));
-            System.out.print("\n");
+            logger.debug(iFlightData);
+            logger.debug("\n");
+            logger.debug(FlightDataDictionary.get(iFlightData));
+            logger.debug("\n");
         }
     }
 

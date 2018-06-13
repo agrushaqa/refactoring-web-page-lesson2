@@ -1,3 +1,4 @@
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ public class WebPage {
     boolean PageIsVisible=false;
     WebElement submitButton;
     By.ByCssSelector ButtonSelector  = new By.ByCssSelector("input[type=submit]");
+    final static Logger logger = Logger.getLogger(WebPage.class);
 
     WebPage()
     {
@@ -27,7 +29,7 @@ public class WebPage {
     {
         getButton().click();
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
-        System.out.print("start switch to next page\n");
+        logger.debug("start switch to next page\n");
         PageIsVisible=false;
         return driver;
     }

@@ -1,28 +1,35 @@
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import com.automation.remarks.video.annotations.Video;
+import org.apache.log4j.Logger;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
+//@Listeners({TestListener.class, VideoListener.class})
+@Listeners(TestListener.class)
 public class WebConfig {
 
     String GoFromCity;
     String GoToCity;
+    final static Logger logger = Logger.getLogger(WebConfig.class);
 
     int WaitTimeoutInMiliSecond = 2000;
     JsonReader SourceData = new JsonReader("./src/test/java/config.json");
 
-    @Before
+    @BeforeTest
     public void prepare()
     {
-        System.out.print("Test started\n");
+        logger.info("Test started\n");
     }
 
-    @Test
+    @org.testng.annotations.Test
+    @Video
     public void test() {
         WebPage1Main page1 = new WebPage1Main(SourceData.get("WebPage"));
         GoFromCity = SourceData.get("FromCity");
@@ -38,19 +45,20 @@ public class WebConfig {
         page1.nextPage();
 
         WebPage2ChooseFlight page2 = new WebPage2ChooseFlight();
-        System.out.print("\n-------------------\n");
+        assertTrue(false);
+        logger.debug("\n-------------------\n");
         List<Float> PriceList = page2.getAllPrices();
         int IndexMinPrice = PriceList.indexOf(Collections.min(PriceList));;
         Float MinPrice = Collections.min(PriceList);
-        System.out.print("Min price :" + Collections.min(PriceList) + "has index " + IndexMinPrice+"\n");
+        logger.debug("Min price :" + Collections.min(PriceList) + "has index " + IndexMinPrice+"\n");
         page2.selectRow(IndexMinPrice);
         String SelectedFlight = page2.getSelectedFlight();
-        System.out.print("Flight number: "+SelectedFlight+"\n");
+        logger.debug("Flight number: "+SelectedFlight+"\n");
         String SelectedAirline = page2.getSelectedAirline();
-        System.out.print("Airline: "+SelectedAirline+"\n");
+        logger.debug("Airline: "+SelectedAirline+"\n");
         page2.nextPage();
         waitLoadingWebPage();
-        System.out.print("\n*********************\n");
+        logger.debug("\n*********************\n");
 
         WebPage3ReserveFlight page3 = new WebPage3ReserveFlight(SourceData.get("PassengerName"),
                 SourceData.get("PassengerAddress"),
@@ -76,24 +84,24 @@ public class WebConfig {
 
         WebPage4Result page4 = new WebPage4Result();
         assertNotNull(page4.getId());
-        System.out.print(page4.getId());
-        System.out.print("\n");
+        logger.debug(page4.getId());
+        logger.debug("\n");
         assertNotNull(page4.getStatus());
-        System.out.print(page4.getStatus());
-        System.out.print("\n");
+        logger.debug(page4.getStatus());
+        logger.debug("\n");
         assertNotNull(page4.getAmount());
-        System.out.print(page4.getAmount());
-        System.out.print("\n");
+        logger.debug(page4.getAmount());
+        logger.debug("\n");
         assertEquals("xxxxxxxxxxxx0002", page4.getCard());
         assertNotNull(page4.getCardExpirationDate());
-        System.out.print(page4.getCardExpirationDate());
-        System.out.print("\n");
+        logger.debug(page4.getCardExpirationDate());
+        logger.debug("\n");
         assertNotNull(page4.getDate());
-        System.out.print(page4.getDate());
-        System.out.print("\n");
+        logger.debug(page4.getDate());
+        logger.debug("\n");
     }
 
-    @After
+    @AfterTest
     public void closetest(){
         WebSource.getInstance().FinishTest();
     }
@@ -102,11 +110,11 @@ public class WebConfig {
     {
         for(String iCity: CityList)
         {
-            System.out.print(iCity.concat("\n"));
+            logger.debug(iCity.concat("\n"));
         }
         Collections.sort(CityList);
         int SearchResult = Collections.binarySearch(CityList,City);
-        System.out.print(SearchResult+"\n");
+        logger.debug(SearchResult+"\n");
 
         if(SearchResult>=0)
             return true;
@@ -118,7 +126,7 @@ public class WebConfig {
         try {
             Thread.sleep(WaitTimeoutInMiliSecond);
         } catch (InterruptedException e) {
-            System.out.print("Thread.sleep error\n");
+            logger.error("Thread.sleep error\n");
         }
     }
 }

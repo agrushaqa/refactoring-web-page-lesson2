@@ -1,3 +1,4 @@
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +16,7 @@ public class WebTable {
     int RowCount = 0;
     int ColumnCount =0;
     List<WebElement> TableElements;
+    final static Logger logger = Logger.getLogger(WebTable.class);
 
     WebTable(WebDriver wdriver)
     {
@@ -84,10 +86,10 @@ public class WebTable {
     {
         for (int j=0;j<TableElements.size();++j)
         {
-            System.out.print("index is:"+j);
-            System.out.print("\n");
-            System.out.print(TableElements.get(j).getText());
-            System.out.print("\n");
+            logger.info("index is:"+j);
+            logger.info("\n");
+            logger.info(TableElements.get(j).getText());
+            logger.info("\n");
         }
     }
 
@@ -95,12 +97,12 @@ public class WebTable {
     {int i=0;
         for(WebElement iElement:TableElements)
         {
-            System.out.print(iElement.getText());
-            System.out.print("\n");
-            System.out.print("index is:");
-            System.out.print("\n");
+            logger.info(iElement.getText());
+            logger.info("\n");
+            logger.info("index is:");
+            logger.info("\n");
             TableElements.indexOf(iElement);
-            System.out.print("\n");
+            logger.info("\n");
             i+=1;
         }
     }

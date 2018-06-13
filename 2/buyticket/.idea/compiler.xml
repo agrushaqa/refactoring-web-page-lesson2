@@ -10,6 +10,6 @@
         <module name="buyticket" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="10" />
   </component>
 </project>
