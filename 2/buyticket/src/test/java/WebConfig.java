@@ -1,14 +1,12 @@
 import com.automation.remarks.video.annotations.Video;
 import org.apache.log4j.Logger;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 
 import java.util.Collections;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 //@Listeners({TestListener.class, VideoListener.class})
 @Listeners(TestListener.class)
@@ -72,30 +70,30 @@ public class WebConfig {
         page3.PrintFlightData();
         page3.FillPassengerData();
         waitLoadingWebPage();
-        assertEquals(page3.getAirline().trim(), SelectedAirline.trim());
-        assertEquals(page3.getFlight().trim(), SelectedFlight.trim());
-        assertEquals(page3.getPrice(), MinPrice);
+        Assert.assertEquals(page3.getAirline().trim(), SelectedAirline.trim());
+        Assert.assertEquals(page3.getFlight().trim(), SelectedFlight.trim());
+        Assert.assertEquals(page3.getPrice(), MinPrice);
         Float TotalCost = page3.getTotalCost();
         Float PriceWithTaxi = MinPrice + page3.getTaxi();
-        assertEquals(TotalCost, PriceWithTaxi);
+        Assert.assertEquals(TotalCost, PriceWithTaxi);
         page3.nextPage();
         waitLoadingWebPage();
 
         WebPage4Result page4 = new WebPage4Result();
-        assertNotNull(page4.getId());
+        Assert.assertNotNull(page4.getId());
         logger.debug(page4.getId());
         logger.debug("\n");
-        assertNotNull(page4.getStatus());
+        Assert.assertNotNull(page4.getStatus());
         logger.debug(page4.getStatus());
         logger.debug("\n");
-        assertNotNull(page4.getAmount());
+        Assert.assertNotNull(page4.getAmount());
         logger.debug(page4.getAmount());
         logger.debug("\n");
-        assertEquals("xxxxxxxxxxxx0002", page4.getCard());
-        assertNotNull(page4.getCardExpirationDate());
+        Assert.assertEquals("xxxxxxxxxxxx0002", page4.getCard());
+        Assert.assertNotNull(page4.getCardExpirationDate());
         logger.debug(page4.getCardExpirationDate());
         logger.debug("\n");
-        assertNotNull(page4.getDate());
+        Assert.assertNotNull(page4.getDate());
         logger.debug(page4.getDate());
         logger.debug("\n");
     }
