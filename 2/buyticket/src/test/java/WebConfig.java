@@ -9,7 +9,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
 
 //@Listeners({TestListener.class, VideoListener.class})
 @Listeners(TestListener.class)
@@ -45,7 +44,7 @@ public class WebConfig {
         page1.nextPage();
 
         WebPage2ChooseFlight page2 = new WebPage2ChooseFlight();
-        assertTrue(false);
+        //assertTrue(false);
         logger.debug("\n-------------------\n");
         List<Float> PriceList = page2.getAllPrices();
         int IndexMinPrice = PriceList.indexOf(Collections.min(PriceList));;

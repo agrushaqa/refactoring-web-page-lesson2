@@ -25,13 +25,11 @@ public class WebSource {
     final static Logger logger = Logger.getLogger(WebSource.class);
     String current_date = new SimpleDateFormat("dd-MM-yyyy HH-mm ").format(new Date());
 
-    private WebSource()
-    {
+    private WebSource() {
         driver = setDriver();
     }
 
-    public WebDriver getDriver()
-    {
+    public WebDriver getDriver() {
         return driver;
     }
 
@@ -39,33 +37,37 @@ public class WebSource {
         private final static WebSource instance = new WebSource();
     }
 
-    public static WebSource getInstance(){
+    public static WebSource getInstance() {
         return WebDriverHolderInstance.instance;
     }
 
-    private org.openqa.selenium.WebDriver setDriver(){
+    private org.openqa.selenium.WebDriver setDriver() {
         //return createFirefoxDriver();//createCromeDriver(); //createIEDriver();//
 
-        String my_browser =  System.getProperty("browser");
+        String my_browser = System.getProperty("browser");
         if (my_browser == null) my_browser = "chrome";
-        switch (my_browser){
-            case "chrome": return createCromeDriver();
-            case "firefox": return createFirefoxDriver();
-            case "chrome_with_traffic": return createChromeDriverWithTraffic();
+        switch (my_browser) {
+            case "chrome":
+                return createCromeDriver();
+            case "firefox":
+                return createFirefoxDriver();
+            case "chrome_with_traffic":
+                return createChromeDriverWithTraffic();
             //case "opera": return createOperaDriver();
             //case "edge": return createEdgeDriver();
-            default: return createCromeDriver();
+            default:
+                return createCromeDriver();
         }
     }
 
-    public org.openqa.selenium.WebDriver createCromeDriver(){
+    public org.openqa.selenium.WebDriver createCromeDriver() {
         //System.setProperty("webdriver.chrome.driver", SourceData.get("ChromeLocation"));
         WebDriverManager.getInstance(CHROME).setup();
         driver = new ChromeDriver();
         return driver;
     }
 
-    public WebDriver createChromeDriverWithTraffic(){
+    public WebDriver createChromeDriverWithTraffic() {
         WebDriverManager.getInstance(CHROME).setup();
         ChromeOptions options = new ChromeOptions();
         //DesiredCapabilities caps = DesiredCapabilities.chrome();
@@ -76,40 +78,41 @@ public class WebSource {
         return driver;
     }
 
-    public org.openqa.selenium.WebDriver createFirefoxDriver(){
+    public org.openqa.selenium.WebDriver createFirefoxDriver() {
         //System.setProperty("webdriver.firefox.driver", SourceData.get("FirefoxLocation"));
         WebDriverManager.getInstance(FIREFOX).setup();
         driver = new FirefoxDriver();
         return driver;
     }
 
-    public org.openqa.selenium.WebDriver createIEDriver(){
+    public org.openqa.selenium.WebDriver createIEDriver() {
         //System.setProperty("webdriver.ie.driver", SourceData.get("IELocation"));
         WebDriverManager.getInstance(IEXPLORER).setup();
         driver = new FirefoxDriver();
         return driver;
     }
 
-    public void FinishTest(){
+    public void FinishTest() {
         logger.info(" --- Finish test with browser:" + System.getProperty("browser"));
-        if(System.getProperty("browser").equals("chrome_with_traffic")){
-            logger.info("chrome_with_traffic");
-            WebDriver driver = WebSource.getInstance().getDriver();
-            try{
-                PrintWriter writer = new PrintWriter("./target/" + current_date + "traffic.txt", "UTF-8");
-                List<LogEntry> entries = driver.manage().logs().get(LogType.PERFORMANCE).getAll();
-                logger.info("There is " + entries.size() + "string in log traffic");
-                writer.println(entries.size() + " " + LogType.PERFORMANCE + " log entries found");
-                for (LogEntry entry : entries) {
-                    writer.println(
-                            new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
+        if (null != System.getProperty("browser"))
+            if (System.getProperty("browser").equals("chrome_with_traffic")) {
+                logger.info("chrome_with_traffic");
+                WebDriver driver = WebSource.getInstance().getDriver();
+                try {
+                    PrintWriter writer = new PrintWriter("./target/" + current_date + "traffic.txt", "UTF-8");
+                    List<LogEntry> entries = driver.manage().logs().get(LogType.PERFORMANCE).getAll();
+                    logger.info("There is " + entries.size() + "string in log traffic");
+                    writer.println(entries.size() + " " + LogType.PERFORMANCE + " log entries found");
+                    for (LogEntry entry : entries) {
+                        writer.println(
+                                new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
+                    }
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
                 }
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
             }
-        }
 
         driver.quit();
         logger.info("Test finished\n");
