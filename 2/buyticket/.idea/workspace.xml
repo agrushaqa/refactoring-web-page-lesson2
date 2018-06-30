@@ -51,8 +51,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-110">
-              <caret line="142" column="30" lean-forward="true" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
+            <state relative-caret-position="-281">
+              <caret line="142" column="30" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -96,7 +96,7 @@
       <file leaf-file-name="help.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/help.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
+            <state relative-caret-position="527">
               <caret line="31" selection-start-line="31" selection-end-line="31" selection-end-column="42" />
             </state>
           </provider>
@@ -441,10 +441,10 @@
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.24432677" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4184514" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4977307" visible="true" weight="0.3756178" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.4977307" visible="true" weight="0.54859966" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30711043" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31164902" />
       <window_info id="Learn" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.24886535" />
@@ -841,15 +841,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/help.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
+        <state relative-caret-position="527">
           <caret line="31" selection-start-line="31" selection-end-line="31" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-110">
-          <caret line="142" column="30" lean-forward="true" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
+        <state relative-caret-position="-281">
+          <caret line="142" column="30" selection-start-line="142" selection-start-column="30" selection-end-line="142" selection-end-column="30" />
         </state>
       </provider>
     </entry>
