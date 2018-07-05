@@ -36,3 +36,6 @@ mvn -Dtest=WebConfig -Dbrowser=chrome_with_traffic test
 
 запуск firefox
 mvn -Dtest=WebConfig -Dbrowser=firefox test
+
+запуск chrome через docker
+mvn -Dtest=WebConfig -Dbrowser=docker test

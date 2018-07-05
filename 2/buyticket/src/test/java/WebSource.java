@@ -8,18 +8,27 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 import static io.github.bonigarcia.wdm.DriverManagerType.*;
 
 public class WebSource {
+    public static int implicitWaitTimeout = 100;
+    public static int explicitWaitTimeout = 100;
+    public static WebDriverWait wait;
     org.openqa.selenium.WebDriver driver;
     JsonReader SourceData = new JsonReader("./src/test/java/config.json");
     final static Logger logger = Logger.getLogger(WebSource.class);
@@ -55,6 +64,8 @@ public class WebSource {
                 return createChromeDriverWithTraffic();
             //case "opera": return createOperaDriver();
             //case "edge": return createEdgeDriver();
+            case "docker":
+                return createDockerDriver();
             default:
                 return createCromeDriver();
         }
@@ -75,6 +86,24 @@ public class WebSource {
         logPrefs.enable(LogType.PERFORMANCE, Level.INFO);
         options.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
         driver = new ChromeDriver(options);
+        return driver;
+    }
+
+    public WebDriver createDockerDriver(){
+        //WebDriverManager.getInstance(CHROME).setup();
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setBrowserName("chrome");
+        caps.setVersion("67.0");
+        //caps.setCapability("enableVNC", "true");
+        try{
+            driver = new RemoteWebDriver(
+                    URI.create("http://192.168.56.101:4444/wd/hub").toURL(), caps);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        wait = new WebDriverWait(driver, explicitWaitTimeout);
+        driver.manage().timeouts().implicitlyWait(implicitWaitTimeout, TimeUnit.SECONDS);
         return driver;
     }
 
