@@ -19,7 +19,7 @@ public class XSSTest {
     @DataProvider(name = "xsstests")
     private Object[][] xssDataProvider(){
         return new Object[][]{
-                {"xss1", "<script>alert('xss');</script>"},
+                {"xss1", "<script>alert('1');</script>"},
                 {"xss2", "<scr<script>ipt>alert(1)</scr</script>ipt>"}
         };
     }
