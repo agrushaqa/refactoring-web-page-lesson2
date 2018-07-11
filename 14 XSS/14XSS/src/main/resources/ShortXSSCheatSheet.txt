@@ -1,0 +1,2 @@
+<scr<script>ipt>alert(1)</scr</script>ipt>
+<script>alert('xss');</script>
