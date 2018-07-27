@@ -1,0 +1,9 @@
+Домашнее задание:Зарегистрироваться на api.yandex.ru, получить API ключ.
+Прочитать документацию:https://tech.yandex.ru/dictionary/doc/dg/reference/lookup-docpage/
+Сделать два теста:
+1. тест на метод getLangs(),
+2. тест на метод lookup(),используя Rest-Assured.
+Получение ключа
+https://tech.yandex.ru/translate/
+api key:
+trnsl.1.1.20180725T201522Z.9533dc3ce3c02c34.e97d3f9cb1add14b37d45d7eac569ef887e03a84
