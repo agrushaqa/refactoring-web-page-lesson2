@@ -1,0 +1,5 @@
+Создать тест, отправляющий запрос на REST и проверяющий соответствие данных в UI
+Воспользоваться API Переводчика
+https://tech.yandex.ru/translate/doc/dg/reference/translate-docpage/
+и проверить соответствие результата перевода на web странице ответу
+от REST API https://translate.yandex.ru, создав 1 автоматический тест.
